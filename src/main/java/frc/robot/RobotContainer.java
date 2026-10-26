@@ -6,6 +6,8 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.Volts;
 
+import com.overture.lib.gamepads.OverXboxController;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -13,7 +15,7 @@ import frc.robot.subsystems.constants;
 import frc.robot.subsystems.motors;
 
 public class RobotContainer {
-  CommandXboxController Controler = new CommandXboxController(0);
+  private final OverXboxController driver = new OverXboxController(0, 0, 0);
   private final motors  motors = new motors();
   
   public RobotContainer() {
@@ -21,9 +23,9 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    Controler.a().onTrue(motors.moveMotor(constants.lowVel));
-    Controler.b().onTrue(motors.moveMotor(constants.highVel));
-    Controler.x().onTrue(motors.moveMotor(constants.stopVel));
+    driver.a().onTrue(motors.moveMotor(constants.lowVel));
+    driver.b().onTrue(motors.moveMotor(constants.highVel));
+    driver.x().onTrue(motors.moveMotor(constants.stopVel));
   }
 
   public Command getAutonomousCommand() {
