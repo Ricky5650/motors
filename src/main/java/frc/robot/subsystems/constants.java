@@ -42,7 +42,9 @@ public static final CANBus rio = new CANBus("rio");
                   lo que significa que tambien controlamos el torque, esto nos ayuda a proejer mecanismos*/
 
                   .withSupplyCurrentLimitEnable(true)
-                  .withSupplyCurrentLimit(20))/*la energia que hagarra del motor limitar esto nos ayuda a no drenar tanta pila */
+                  .withSupplyCurrentLowerLimit(10)//aqui definimos la cantidad de energia despues de el pico de el current limit
+                  .withSupplyCurrentLimit(60))/*la energia que hagarra del motor limitar esto nos ayuda a no drenar tanta pila */
+                  
 
         .withVoltage(
             new VoltageConfigs()
@@ -58,7 +60,7 @@ public static final CANBus rio = new CANBus("rio");
         .withFeedback(
             //configuramos el feedback que resive el motor, en este caso lo usamos para definir los ratios de los
                 new FeedbackConfigs()
-                    .withSensorToMechanismRatio(1)
+                    .withSensorToMechanismRatio(1) //en este estamos viendo el de el mecanismos y si queremos ver el de el motor usamos rotor
                 );
             
       
